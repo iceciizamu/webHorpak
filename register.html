@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    
+    <title>HorPak</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  </head>
+  <body>
+  
+   
+    <div class="container" >
+        <h2 align ="center">ลงทะเบียนผู้เช่า</h2>
+        <form class="needs-validation" novalidate id = "addform" >
+              <div class="col-md-6 mb-3" >
+                <label for="validationTooltip01">ชื่อ</label>
+                <input type="text" class="form-control" id="validationTooltip01" value="Mark" required placeholder="ระบุชื่อ" v-model="form.name" :state="firstnameState">
+                <div class="valid-tooltip">
+                  Looks good!
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="validationTooltip02">นามสกุล</label>
+                <input type="text" class="form-control" 
+                id="validationTooltip02" value="Otto"
+                placeholder="ระบุนามสกุล" v-model="form.surname" :state="surnameState" required>
+                <div class="invalid-tooltip">
+                    Please provide a valid city.
+                </div>
+               <!---- <div class="valid-tooltip">
+                  Looks good!
+                </div>-->
+              </div>
+            
+
+            
+              <div class="col-md-6 mb-3">
+                <label for="validationTooltip03">เลขบัตรประชาชน</label>
+                <input type="text" class="form-control" 
+                id="validationTooltip03" required 
+                placeholder="ระบุเลขบัตรประชาชน 13 หลัก" 
+                v-model="form.idcard">
+                <div class="invalid-tooltip">
+                  Please provide a valid city.
+                </div>
+              </div>
+              
+              <div class="gender-group d-flex  mb-3">
+                <p >เพศ</p>
+                  <div class="circle" :class="form.gender == 'female' ? 'active' : ''" @click="chooseGender('female')">
+                    <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g><path d="m411 155c0-85.467-69.533-155-155-155s-155 69.533-155 155c0 80.407 61.545 146.702 140 154.272v102.728h-55c-8.284 0-15 6.716-15 15s6.716 15 15 15h55v55c0 8.284 6.716 15 15 15s15-6.716 15-15v-55h55c8.284 0 15-6.716 15-15s-6.716-15-15-15h-55v-102.728c78.455-7.57 140-73.865 140-154.272zm-280 0c0-68.925 56.075-125 125-125s125 56.075 125 125-56.075 125-125 125-125-56.075-125-125z"/></g></svg>
+                  </div>
+                  <p>หญิง</p>
+                  <div class="circle" :class="form.gender == 'male' ? 'active' : ''" @click="chooseGender('male')">
+                    <svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g><path d="m497 0h-140c-8.284 0-15 6.716-15 15s6.716 15 15 15h103.787l-173.104 173.104c-31.503-26.601-70.975-41.104-112.683-41.104-46.744 0-90.69 18.203-123.744 51.256s-51.256 77-51.256 123.744 18.203 90.69 51.256 123.744 77 51.256 123.744 51.256 90.69-18.203 123.744-51.256 51.256-77 51.256-123.744c0-41.708-14.503-81.18-41.104-112.683l173.104-173.104v103.787c0 8.284 6.716 15 15 15s15-6.716 15-15v-140c0-8.284-6.716-15-15-15zm-219.469 439.531c-27.387 27.386-63.8 42.469-102.531 42.469s-75.144-15.083-102.531-42.469c-27.386-27.387-42.469-63.8-42.469-102.531s15.083-75.144 42.469-102.531c27.387-27.386 63.8-42.469 102.531-42.469s75.144 15.083 102.531 42.469c27.386 27.387 42.469 63.8 42.469 102.531s-15.083 75.144-42.469 102.531z"/></g></svg>
+                  </div>
+                <p>ชาย</p>
+                </div>
+
+               <div class="col-mb6 mb-3">
+                <label for="validationTooltip04">เบอร์โทรศัพท์</label>
+                <input type="text" class="form-control" 
+                id="validationTooltip04" required 
+               placeholder="ระบุเบอร์โทรศัพท์ 10 หลัก" v-model="form.phone">
+                <div class="invalid-tooltip">
+                  Please provide a valid city.
+                </div>
+                
+               </div> 
+              <div class="col-md-3 mb-3">
+                <label for="validationTooltip04">State</label>
+                <select class="custom-select" id="validationTooltip04" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option>...</option>
+                </select>
+                <div class="invalid-tooltip">
+                  Please select a valid state.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="validationTooltip05">Zip</label>
+                <input type="text" class="form-control" id="validationTooltip05" required>
+                <div class="invalid-tooltip">
+                  Please provide a valid zip.
+                </div>
+              </div>
+            
+            <button class="btn btn-primary" type="submit">Submit form</button>
+          </form>
+        
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  </body>
+
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyBNt0zUiP-lyikRdNuwOUmMWfFzp1zO-t8",
+    authDomain: "horpak-d4c4f.firebaseapp.com",
+    databaseURL: "https://horpak-d4c4f.firebaseio.com",
+    projectId: "horpak-d4c4f",
+    storageBucket: "horpak-d4c4f.appspot.com",
+    messagingSenderId: "784294723507",
+    appId: "1:784294723507:web:4a45fe3c2a4d2b07f255c6",
+    measurementId: "G-V3VR9793GB"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<script src= "" charset="utf-8"></script>
+</html>
